@@ -1,0 +1,30 @@
+###
+POST http://localhost:9000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "mac book air 2023",
+    "description": "ram 16 gb",
+    "price": "10000",
+    "stock": "10"
+}
+
+###
+GET http://localhost:9000/api/products HTTP/1.1
+
+###
+GET http://localhost:9000/api/products/6559739e01d6846226913c78 HTTP/1.1
+
+###
+PUT http://localhost:9000/api/products/6559739e01d6846226913c78 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "mac book air 2023",
+    "description": "ram 16 gb 512gb ssd",
+    "price": "10000",
+    "stock": "10"
+}
+
+###
+DELETE  http://localhost:9000/api/products/6559739e01d6846226913c78 HTTP/1.1
