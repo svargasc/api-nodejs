@@ -16,7 +16,7 @@ GET http://localhost:9000/api/products HTTP/1.1
 GET http://localhost:9000/api/products/6559739e01d6846226913c78 HTTP/1.1
 
 ###
-PUT http://localhost:9000/api/products/6559739e01d6846226913c78 HTTP/1.1
+PUT http://localhost:9000/api/products/655b40f6828ec3136294e6d3 HTTP/1.1
 Content-Type: application/json
 
 {

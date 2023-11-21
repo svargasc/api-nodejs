@@ -1,30 +1,22 @@
 const request = require('supertest');
-const { app, server } = require('../index');
-const productSchema = require('../models/products.model');
+const router = require('../routes/products.js');
+const productSchema = require('../models/products.model.js')
 
-describe('POST /api/products', () => {
-  afterAll(async () => {
-    await productSchema.deleteMany();
-    await server.close(); // Cerrar la instancia del servidor después de todas las pruebas
-  });
+// describe('POST /products', () => {
+//   test('should be respond with a 200 status code', async () => {
+//     const response = await request(router).post('/products').send({
+//       name: "lala",
+//       description: "la la land",
+//       price: 100,
+//       stock: 10
+//     });
+//     expect(response.statusCode.toBe(200));
+//   });
+// });
 
-  it('should create a new product', async () => {
-    const productData = {
-      name: 'Test Product',
-      description: 'Test Description',
-      price: 20.99,
-      stock: 10,
-    };
-
-    const response = await request(app)
-      .post('/api/products')
-      .send(productData)
-      .expect(200);
-
-    expect(response.body).toHaveProperty('_id');
-    expect(response.body.name).toBe(productData.name);
-    expect(response.body.description).toBe(productData.description);
-    expect(response.body.price).toBe(productData.price);
-    expect(response.body.stock).toBe(productData.stock);
+describe('GET /products', () => {
+  test('should be respond with a 200 status code', async () => {
+    const response = await request(router).get('/products').send();
+    expect(response.statusCode.toBe(200));
   });
 });

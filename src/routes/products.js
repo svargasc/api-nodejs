@@ -8,7 +8,7 @@ router.post("/products", (req, res) => {
   const product = productSchema(req.body);
   product
     .save()
-    .then((data) => res.json(data))
+    .then((data) => res.json(data), res.sendStatus(200))
     .catch((error) => res.json({ message: error }));
 });
 
@@ -16,7 +16,7 @@ router.post("/products", (req, res) => {
 router.get("/products", (req, res) => {
   productSchema
     .find()
-    .then((data) => res.json(data))
+    .then((data) => res.json(data), res.status(200))
     .catch((error) => res.json({ message: error }));
 });
 
