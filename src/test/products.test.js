@@ -1,22 +1,36 @@
-const request = require('supertest');
-const router = require('../routes/products.js');
-const productSchema = require('../models/products.model.js')
+const request = require("supertest");
+const { app } = require("../index");
 
-// describe('POST /products', () => {
-//   test('should be respond with a 200 status code', async () => {
-//     const response = await request(router).post('/products').send({
-//       name: "lala",
-//       description: "la la land",
-//       price: 100,
-//       stock: 10
-//     });
-//     expect(response.statusCode.toBe(200));
-//   });
-// });
+describe("Products API Endpoints", () => {
+  //Prueba 1
+  test("Deberia traer todos los productos", async () => {
+    const res = await request(app).get("/api/products");
+    expect(res.statusCode).toEqual(200);
+  });
 
-describe('GET /products', () => {
-  test('should be respond with a 200 status code', async () => {
-    const response = await request(router).get('/products').send();
-    expect(response.statusCode.toBe(200));
+  //Prueba 2
+  test("Deberia traer un producto por ID", async () => {
+    const createdProduct = await request(app).post("/api/products").send({
+      name: "mac book air 2023",
+      description: "ram 16 gb 512gb ssd",
+      price: 10000,
+      stock: 10,
+    });
+
+    const res = await request(app).get(
+      `/api/products/${createdProduct.body._id}`
+    );
+    expect(res.statusCode).toEqual(200);
+  });
+
+  //Prueba 3
+  test("Deberia crear un nuevo producto", async () => {
+    const res = await request(app).post("/api/products").send({
+      name: "mac book pro 2023",
+      description: "ram 32 gb 1tb ssd",
+      price: 10000,
+      stock: 10,
+    });
+    expect(res.statusCode).toEqual(200);
   });
 });

@@ -41,11 +41,11 @@ router.put("/products/:id", (req, res) => {
 
 //Eliminar producto
 router.delete("/products/:id", (req, res) => {
-    const { id } = req.params;
-    productSchema
-      .deleteOne({ _id: id })
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }));
-  });
+  const { id } = req.params;
+  productSchema
+    .deleteOne({ _id: id })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
 
 module.exports = router;
